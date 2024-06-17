@@ -9,10 +9,55 @@ static LSM6DSLSensor acc_gyro(&devI2c,0xD4,D4,D5); // high address
 
 
 float computeAngle(int x, int y, int z){
-    float res = 0;
+    float result = 0;
 
-    return res;
+    return result;
 }
+/*
+//from here is my coding added to work out the 'compute Angle'
+
+*/
+
+    atan(int y / sqrt (pow(int x, int x) + pow(int z, int z)));
+ 
+
+int main() {
+
+    double num = 1.0;
+    double result;
+
+    result = atan(num);
+
+    printf("Inverse of tan(%.2f) = %.2f in radians", num, result);
+
+    // Converting radians to degrees
+    result = (result * 180) / PI;
+    printf("\nInverse of tan(%.2f) = %.2f in degrees", num, result);
+
+    return 0;
+}
+    
+ //   atan(y / sqrt (pow(x,x) + pow(z,z)))
+
+//  #include <iostream>
+// #include <cmath>
+// int main() {
+//     double x = 0.5;
+//     double arctangentValue = atan(x);
+//     std::cout << "Arctangent of " << x << " is: " << sineValue << std::endl;
+//    return 0;
+// }
+
+
+// Converting radians to degrees
+    result = (result * 180) / PI;
+    printf("\nInverse of tan(%.2f) = %.2f in degrees", num, result);
+
+/*
+//end of my notes on compute value 
+*\
+
+
 
 /* Simple main function */
 int main() {
