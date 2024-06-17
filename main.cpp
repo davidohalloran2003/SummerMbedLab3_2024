@@ -1,49 +1,65 @@
+
 #include "mbed.h"
+#include "LSM6DSLSensor.h"
 
-/*
-next term is the sum of the previous two terms. 
-The first two terms of the Fibonacci sequence are 0 followed by 1.
+#define PI 3.141592654
+
+static DevI2C devI2c(PB_11,PB_10);
+static LSM6DSLSensor acc_gyro(&devI2c,0xD4,D4,D5); // high address
+
+
+float computeAngle(int x, int y, int z){
+    float res = 0;
+
+    return res;
+}
+
+/* Simple main function */
+int main() {
+    uint8_t id;
+    int32_t axes[3];
+    float res=0;
+    acc_gyro.init(NULL);
+
+    acc_gyro.enable_x();
+    acc_gyro.enable_g();
+
+    printf("This is an running on Mbed OS %d.%d.%d.\n", MBED_MAJOR_VERSION, MBED_MINOR_VERSION, MBED_PATCH_VERSION);
+    acc_gyro.read_id(&id);
+    printf("LSM6DSL accelerometer & gyroscope = 0x%X\r\n", id);
+
+    while(1) {
+
+        acc_gyro.get_x_axes(axes);
+        res = computeAngle(axes[0], axes[1], axes[2]);
+        printf("LSM6DSL: %6d, %6d, %6d, %3.2f\r\n", axes[0], axes[1], axes[2], res);
+
+
+        thread_sleep_for(2000);
+
+/* Example of some of the printed data from Coolterm from the above coding for the mbed accelerometer example
+
+// This is an running on Mbed OS 6.15.1.
+// LSM6DSL accelerometer & gyroscope = 0x6A
+// LSM6DSL:     -7,     -5,   1038, 0.00
+// LSM6DSL:     -6,     -4,   1038, 0.00
+// LSM6DSL:   -242,   -111,   1027, 0.00
+// LSM6DSL:   -247,    702,   -480, 0.00
+// LSM6DSL:    109,    457,   -596, 0.00
+// LSM6DSL:   -423,    356,   1424, 0.00
+// LSM6DSL:    955,   -286,   -182, 0.00
+// LSM6DSL:   -178,   -980,     25, 0.00
+// LSM6DSL:   -998,     27,    235, 0.00
+// LSM6DSL:    425,    941,   -572, 0.00
+// LSM6DSL:    390,    125,   -872, 0.00
+// LSM6DSL:     -9,     28,   1041, 0.00
+// LSM6DSL:     -7,     -6,   1039, 0.00
+// LSM6DSL:     -7,     -4,   1039, 0.00
+// LSM6DSL:     -7,     -4,   1038, 0.00
+// LSM6DSL:     -7,     -4,   1038, 0.00
+// LSM6DSL:     -8,     -4,   1038, 0.00
+// LSM6DSL:     -8,     -5,   1039, 0.00
+
 */
-// main() runs in its own thread in the OS
-
-int t_1 = 0;
-int t_2 = 1;
-int next_term = 0;
-
-int max_terms = 10;
-
-
-int fib(int n){
-    // inp: position of the fib sequence
-    // out: the number in that sequence
-    if(n == 0)
-        return 0;
-    if(n == 1)
-        return 1;
-    else
-        return(fib(n-1) + fib(n-2));
-}
-
-int main()
-{
-    // printf("Finbonachi series loop: %d, %d,", t_1, t_2);
-    // for(int i=2; i<max_terms; i++){
-    //     next_term = t_1 + t_2;
-    //     printf("%d, ", next_term);
-    //     t_1 = t_2;
-    //     t_2 = next_term;
-    // }
-    // printf("\r\n");
-
-    printf("Finbonachi series recursive:");
-    for(int i=0; i<max_terms; i++){
-        printf("%d, ", fib(i));
-    }
-    printf("\r\n");
-    
-    while (true) {
-
     }
 }
-
-
