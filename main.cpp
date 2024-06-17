@@ -1,6 +1,7 @@
 
 #include "mbed.h"
 #include "LSM6DSLSensor.h"
+#include <utility>
 
 #define PI 3.141592654
 
@@ -18,15 +19,20 @@ float computeAngle(int x, int y, int z){
 
 */
 
-    atan(int y / sqrt (pow(int x, int x) + pow(int z, int z)));
+    float tan(int y / sqrt (pow(int x, int x) + pow(int z, int z)));
+    float result = 0;
+
+    return result;
+    
+
  
 
-int main() {
+int make_integer_sequence<class _Tp, _Tp _Np> () {
 
     double num = 1.0;
     double result;
 
-    result = atan(num);
+    result = tan(num);
 
     printf("Inverse of tan(%.2f) = %.2f in radians", num, result);
 
@@ -37,6 +43,8 @@ int main() {
     return 0;
 }
     
+ /*
+ 
  //   atan(y / sqrt (pow(x,x) + pow(z,z)))
 
 //  #include <iostream>
@@ -53,7 +61,7 @@ int main() {
     result = (result * 180) / PI;
     printf("\nInverse of tan(%.2f) = %.2f in degrees", num, result);
 
-/*
+
 //end of my notes on compute value 
 *\
 
